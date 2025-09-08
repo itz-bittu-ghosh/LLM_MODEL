@@ -5,47 +5,45 @@ import "dotenv/config";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const tvly = tavily({ apiKey: process.env.TAVLY_API_KEY });
 
-export async function main(userMassage) {
-  const massages = [
-    {
-      role: "system",
-      content:
-        //  "you are jervis.Give current weather of cities.",
-        `you are jervis. a tech mentor who explains concepts simply or Cheerful productivity partner.current date is ${new Date().toLocaleDateString()}`,
-    },
-    // {
-    //   role: "user",
-    //   content:
-    //   //  "Hi",
-    //   // "Who are you?",
-    //   "what is the current weather in west bengal",
-    //   // "what is the current weather in bihar",
-    //   // "what is bootstrap?"
-    // },
-  ];
-
-const tool = [
+const massages = [
   {
-    type: "function",
-    function: {
-      name: "webSearch",
-      description:
-        "Useful for when you need to answer questions about current events. Input should be a search query.",
-      parameters: {
-        type: "object",
-        properties: {
-          query: {
-            type: "string",
-            description:
-              "The search query, e.g. 'current weather in West Bengal'.",
+    role: "system",
+    content:
+      //  "you are jervis.Give current weather of cities.",
+      `you are jervis. a tech mentor who explains concepts simply or Cheerful productivity partner.current date is ${new Date().toLocaleDateString()}`,
+  },
+  // {
+  //   role: "user",
+  //   content:
+  //   //  "Hi",
+  //   // "Who are you?",
+  //   "what is the current weather in west bengal",
+  //   // "what is the current weather in bihar",
+  //   // "what is bootstrap?"
+  // },
+];
+export async function main(userMassage) {
+  const tool = [
+    {
+      type: "function",
+      function: {
+        name: "webSearch",
+        description:
+          "Useful for when you need to answer questions about current events. Input should be a search query.",
+        parameters: {
+          type: "object",
+          properties: {
+            query: {
+              type: "string",
+              description:
+                "The search query, e.g. 'current weather in West Bengal'.",
+            },
           },
+          required: ["query"],
         },
-        required: ["query"],
       },
     },
-  },
-];
-
+  ];
 
   massages.push({ role: "user", content: userMassage });
 
@@ -63,9 +61,9 @@ const tool = [
 
     const toolCalls = completion.choices[0].message.tool_calls;
     if (!toolCalls) {
+      massages.push(completion.choices[0].message);
+      // massages.push({ role: "user", content: completion.choices[0].message })
       return completion.choices[0].message.content;
-      // console.log(`Assistant: ${completion.choices[0].message.content}`);
-      // break;
     }
     for (const toolCall of toolCalls) {
       const functionName = toolCall.function.name;

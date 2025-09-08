@@ -5,15 +5,13 @@ import cors from "cors"
 import "dotenv/config";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 app.use(express.static("public"));
-app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "public" });
-});
+
 app.post("/chat", async (req, res) => {
   // res.send('Hello World!')
   const { message } = req.body;

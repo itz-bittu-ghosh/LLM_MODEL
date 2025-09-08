@@ -42,7 +42,7 @@ async function massageSend() {
 }
 
 async function sendToLLM(message) {
-  const response = await fetch("http://localhost:3123/chat", {
+  const response = await fetch("http://localhost:3004/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // capitalized C works better cross-platform
