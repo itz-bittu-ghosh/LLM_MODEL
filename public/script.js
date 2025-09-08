@@ -30,7 +30,7 @@ async function massageSend() {
 
   // console.log(message);
   const assistantReply = await sendToLLM(message);
-  console.log("Assistant:", assistantReply);
+  // console.log("Assistant:", assistantReply);
 
   // Add assistant message
   const assistantMessageDiv = document.createElement("div");
@@ -42,7 +42,7 @@ async function massageSend() {
 }
 
 async function sendToLLM(message) {
-  const response = await fetch("http://localhost:3000/chat", {
+  const response = await fetch("http://localhost:3123/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // capitalized C works better cross-platform
