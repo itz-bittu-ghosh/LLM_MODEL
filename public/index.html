@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      /* Hide scrollbar but allow scrolling */
+      .scrollbar-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;     /* Firefox */
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;             /* Chrome, Safari */
+      }
+    </style>
+  </head>
+
+  <body class="bg-neutral-900 text-white min-h-screen w-full overflow-x-hidden">
+  <h1 class="text-3xl font-bold text-center p-4 bg-transparent fixed top-0 w-full">ChatBot</h1>
+
+    <div class="flex flex-col h-screen">
+      
+      <!-- Chat Messages -->
+      <div id="chatContainer" 
+        class="flex-1 overflow-y-auto scrollbar-hide xl:px-[420px] px-4 pt-[60px] pb-4 space-y-2 ">
+        
+        
+      </div>
+
+      <!-- Input Box -->
+      <div class="p-4 bg-neutral-900 flex space-x-4 h-[130px] xl:w-1/2 w-full  m-auto gap-2">
+        <textarea
+          class="w-full p-2 rounded-lg bg-neutral-700 text-white resize-none  h-[60px] m-auto"
+          rows="3"
+          placeholder="Type your message..."
+          id="messageInput"
+        ></textarea>
+        <button
+          class="px-4 py-2 bg-white text-neutral-900  rounded-lg  h-[60px] m-auto cursor-pointer text-[22px] font-bold rounded-xl"
+          id="sendButton"
+        >
+          <i class="ri-send-plane-2-fill"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+  </body>
+</html>
