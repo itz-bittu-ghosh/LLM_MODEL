@@ -23,6 +23,8 @@ const massages = [
   // },
 ];
 export async function main(userMassage) {
+  console.log("Userrrr: ", massages);
+  
   const tool = [
     {
       type: "function",
@@ -63,7 +65,9 @@ export async function main(userMassage) {
     if (!toolCalls) {
       massages.push(completion.choices[0].message);
       // massages.push({ role: "user", content: completion.choices[0].message })
+      console.log("Assistantttt: ",completion.choices[0].message.content);
       return completion.choices[0].message.content;
+      
     }
     for (const toolCall of toolCalls) {
       const functionName = toolCall.function.name;
