@@ -1,4 +1,3 @@
-// Auto scroll to bottom
 function scrollToBottom() {
   const chat = document.getElementById("chatContainer");
   chat.scrollTop = chat.scrollHeight;
@@ -9,14 +8,14 @@ window.onload = scrollToBottom;
 const sendButton = document.getElementById("sendButton");
 const messageInput = document.getElementById("messageInput");
 const chatContainer = document.getElementById("chatContainer");
-sendButton.addEventListener("click", massageSend);
+sendButton.addEventListener("click", messageSend);
 messageInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-    massageSend();
+    messageSend();
   }
 });
-async function massageSend() {
+async function messageSend() {
   const message = messageInput.value.trim();
   if (message === "") return;
   const userMessageDiv = document.createElement("div");
@@ -39,7 +38,7 @@ async function massageSend() {
 }
 
 async function sendToLLM(message) {
-  const response = await fetch("http://localhost:3004/chat", {
+  const response = await fetch("/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // capitalized C works better cross-platform
