@@ -13,12 +13,9 @@ app.use(cors())
 app.use(express.static("public"));
 
 app.post("/chat", async (req, res) => {
-  // res.send('Hello World!')
   const { message } = req.body;
   const LLM_Responds = await main(message);
   res.json({ response: LLM_Responds });
-
-  // console.log("message: ", LLM_Responds);
 });
 
 app.listen(PORT, () => {

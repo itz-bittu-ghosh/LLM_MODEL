@@ -23,7 +23,7 @@ const massages = [
   // },
 ];
 export async function main(userMassage) {
-  console.log("Userrrr: ", massages);
+  // console.log("Userrrr: ", massages);
   
   const tool = [
     {
@@ -51,8 +51,8 @@ export async function main(userMassage) {
 
   while (true) {
     const completion = await groq.chat.completions.create({
-      temperature: 0,
-      max_completion_tokens: 512,
+      temperature: 0.5,
+      max_completion_tokens: 200,
       model: "llama-3.3-70b-versatile",
       messages: massages,
       tools: tool,
@@ -65,7 +65,7 @@ export async function main(userMassage) {
     if (!toolCalls) {
       massages.push(completion.choices[0].message);
       // massages.push({ role: "user", content: completion.choices[0].message })
-      console.log("Assistantttt: ",completion.choices[0].message.content);
+      // console.log("Assistantttt: ",completion.choices[0].message.content);
       return completion.choices[0].message.content;
       
     }

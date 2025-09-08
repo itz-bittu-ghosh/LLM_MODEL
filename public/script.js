@@ -6,7 +6,6 @@ function scrollToBottom() {
 
 window.onload = scrollToBottom;
 
-// console.log("ChatBot script loaded");
 const sendButton = document.getElementById("sendButton");
 const messageInput = document.getElementById("messageInput");
 const chatContainer = document.getElementById("chatContainer");
@@ -22,15 +21,13 @@ async function massageSend() {
   if (message === "") return;
   const userMessageDiv = document.createElement("div");
   userMessageDiv.className =
-    "my-6 bg-green-900  p-4 rounded-lg ml-auto max-w-full w-fit";
+    "my-6 bg-red-900  p-4 rounded-lg ml-auto max-w-full w-fit";
   userMessageDiv.textContent = message;
   chatContainer.appendChild(userMessageDiv);
   scrollToBottom();
   messageInput.value = "";
 
-  // console.log(message);
   const assistantReply = await sendToLLM(message);
-  // console.log("Assistant:", assistantReply);
 
   // Add assistant message
   const assistantMessageDiv = document.createElement("div");
