@@ -9,8 +9,7 @@ const massages = [
   {
     role: "system",
     content:
-      //  "you are jervis.Give current weather of cities.",
-      `you are jervis. a tech mentor who explains concepts simply or Cheerful productivity partner.current date is ${new Date().toLocaleDateString()}`,
+      `You are jervis. a tech mentor who explains concepts simply or Cheerful productivity partner. Current date is ${new Date().toLocaleDateString()}`,
   },
   // {
   //   role: "user",
@@ -22,9 +21,10 @@ const massages = [
   //   // "what is bootstrap?"
   // },
 ];
+
 export async function main(userMassage) {
-  console.log("Userrrr: ", massages);
-  
+  // console.log("Userrrr: ", massages);
+
   const tool = [
     {
       type: "function",
@@ -65,9 +65,8 @@ export async function main(userMassage) {
     if (!toolCalls) {
       massages.push(completion.choices[0].message);
       // massages.push({ role: "user", content: completion.choices[0].message })
-      console.log("Assistantttt: ",completion.choices[0].message.content);
+      // console.log("Assistantttt: ",completion.choices[0].message.content);
       return completion.choices[0].message.content;
-      
     }
     for (const toolCall of toolCalls) {
       const functionName = toolCall.function.name;
